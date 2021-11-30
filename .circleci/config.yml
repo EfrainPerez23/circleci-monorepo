@@ -27,7 +27,7 @@ jobs:
             cd << parameters.dir >>
             bash run_tests.sh
       - continuation/continue:
-          parameters: '{ec: "hi"}'
+          parameters: '{ "ec" : "'testing_parameter_pass'" }'
           configuration_path: configs/continue_config.yml
 
   trigger-needed-workflows:
