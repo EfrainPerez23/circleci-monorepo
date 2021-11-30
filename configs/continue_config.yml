@@ -1,13 +1,14 @@
 version: 2.1
 
 jobs:
-  testing:
+  added:
     docker:
       - image: circleci/node:12
     steps:
-      run: echo 'Call from config.yml successfully!!'
+      - checkout
+      - run: echo 'Call from config.yml successfully!!'
 
 workflows:
   service-contination:
     jobs:
-      - testing
+      - added
