@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       - continuation/continue:
-          parameters: '{ec: hi}'
+          parameters: '{ "ec" : "'testing_parameter_pass'" }'
           configuration_path: configs/continue_config.yml
       # - swissknife/trigger-workflows-for-all-modified:
       #     base-branch: master
