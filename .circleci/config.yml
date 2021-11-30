@@ -26,7 +26,7 @@ jobs:
             cd << parameters.dir >>
             bash run_tests.sh
       - continuation/continue:
-          configuration_path: generated_config.yml
+          configuration_path: continue_config.yml
 
   trigger-needed-workflows:
     docker:
