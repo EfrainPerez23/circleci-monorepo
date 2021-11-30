@@ -8,11 +8,11 @@ jobs:
     steps:
       run: echo 'Call from config.yml successfully!!'
 
-workflows:
+# workflows:
 
-  service-contination:
-    jobs:
-      - maven/test:
-          name: build-service-1
-          command: 'install -DskipTests'
-          app_src_directory: 'service1'
+#   service-contination:
+#     jobs:
+#       - maven/test:
+#           name: build-service-1
+#           command: 'install -DskipTests'
+#           app_src_directory: 'service1'
