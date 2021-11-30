@@ -12,9 +12,8 @@ orbs:
 
 jobs:
   run-tests:
-    docker:
-      - image: circleci/node:12
-    working_directory: /home/circleci/project/
+    executor: continuation/default
+    # working_directory: /home/circleci/project/
     parameters:
       dir:
         type: string
