@@ -33,9 +33,9 @@ jobs:
           use-divergence-point: true
           code-param-name-map: '
             [
-              {"regex": "^(clients|shared).*", "param_name": "run_client-tests_workflow"},
-              {"regex": "^(server|shared).*", "param_name": "run_server-tests_workflow"},
-              {"regex": "^(operations).*", "param_name": "run_operations-tests_workflow"}
+              {"regex": "^(clients|shared).*", "param_name": "run_client_workflow"},
+              {"regex": "^(server|shared).*", "param_name": "run_server_workflow"},
+              {"regex": "^(operations).*", "param_name": "run_operations_workflow"}
             ]'
           additional-param-map: '{"run_trigger_workflow": false}'
           use-swissknife-sha: true
