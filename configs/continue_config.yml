@@ -3,10 +3,10 @@ version: 2.1
 parameters:
   ec:
     type: string
+    default: 'EMPTY'
 
 jobs:
   added:
-
     docker:
       - image: circleci/node:12
     steps:
