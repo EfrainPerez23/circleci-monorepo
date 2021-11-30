@@ -27,7 +27,7 @@ jobs:
             cd << parameters.dir >>
             bash run_tests.sh
       - continuation/continue:
-          parameters: '{}'
+          parameters: '{ec: "hi"}'
           configuration_path: configs/continue_config.yml
 
   trigger-needed-workflows:
@@ -36,18 +36,21 @@ jobs:
     working_directory: /home/circleci/project/
     steps:
       - checkout
-      - swissknife/trigger-workflows-for-all-modified:
-          base-branch: master
-          run-mode-for-base-branch: run_for_last_commit
-          use-divergence-point: true
-          code-param-name-map: '
-            [
-              {"regex": "^(clients|shared).*", "param_name": "run_client_workflow"},
-              {"regex": "^(server|shared).*", "param_name": "run_server_workflow"},
-              {"regex": "^(operations).*", "param_name": "run_operations_workflow"}
-            ]'
-          additional-param-map: '{"run_trigger_workflow": false}'
-          use-swissknife-sha: true
+      - continuation/continue:
+          parameters: '{}'
+          configuration_path: configs/continue_config.yml
+      # - swissknife/trigger-workflows-for-all-modified:
+      #     base-branch: master
+      #     run-mode-for-base-branch: run_for_last_commit
+      #     use-divergence-point: true
+      #     code-param-name-map: '
+      #       [
+      #         {"regex": "^(clients|shared).*", "param_name": "run_client_workflow"},
+      #         {"regex": "^(server|shared).*", "param_name": "run_server_workflow"},
+      #         {"regex": "^(operations).*", "param_name": "run_operations_workflow"}
+      #       ]'
+      #     additional-param-map: '{"run_trigger_workflow": false}'
+      #     use-swissknife-sha: true
 
 workflows:
   client-tests:

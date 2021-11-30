@@ -1,12 +1,17 @@
 version: 2.1
 
+parameters:
+  ec:
+    type: string
+
 jobs:
   added:
+
     docker:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: echo 'Call from config.yml successfully!!'
+      - run: echo 'Call from config.yml successfully << pipeline.parameters.ec >>!!'
 
 workflows:
   service-contination:
