@@ -1,6 +1,5 @@
 version: 2.1
 
-
 jobs:
   testing:
     docker:
@@ -11,7 +10,4 @@ jobs:
 workflows:
   service-contination:
     jobs:
-      - maven/test:
-          name: build-service-1
-          command: 'install -DskipTests'
-          app_src_directory: 'service1'
+      - testing
