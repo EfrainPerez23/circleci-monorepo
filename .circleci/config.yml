@@ -19,8 +19,8 @@ jobs:
         type: string
         description: The directory to run tests for.
     steps:
-      # - swissknife/sk-checkout:
-      #     swissknife_sha: << pipeline.parameters.swissknife_sha >>
+      - swissknife/sk-checkout:
+          swissknife_sha: << pipeline.parameters.swissknife_sha >>
       - run:
           name: Run tests
           command: |
@@ -29,20 +29,6 @@ jobs:
       - continuation/continue:
           parameters: '{}'
           configuration_path: configs/continue_config.yml
-      # - path-filtering/filter:
-      #     name: check-updated-files
-      #     # 3-column, whitespace-delimited mapping. One mapping per
-      #     # line:
-      #     # <regex path-to-test> <parameter-to-set> <value-of-pipeline-parameter>
-      #     mapping: |
-      #       service1/.* run-build-service-1-job true
-      #       service2/.* run-build-service-2-job true
-      #     base-revision: main
-      #     # this is the path of the configuration we should trigger once
-      #     # path filtering and pipeline parameter value updates are
-      #     # complete. In this case, we are using the parent dynamic
-      #     # configuration itself.
-      #     config-path: .circleci/continue_config.yml
 
   trigger-needed-workflows:
     docker:
@@ -50,21 +36,18 @@ jobs:
     working_directory: /home/circleci/project/
     steps:
       - checkout
-      - continuation/continue:
-          parameters: '{}'
-          configuration_path: configs/continue_config.yml
-      # - swissknife/trigger-workflows-for-all-modified:
-      #     base-branch: master
-      #     run-mode-for-base-branch: run_for_last_commit
-      #     use-divergence-point: true
-      #     code-param-name-map: '
-      #       [
-      #         {"regex": "^(clients|shared).*", "param_name": "run_client_workflow"},
-      #         {"regex": "^(server|shared).*", "param_name": "run_server_workflow"},
-      #         {"regex": "^(operations).*", "param_name": "run_operations_workflow"}
-      #       ]'
-      #     additional-param-map: '{"run_trigger_workflow": false}'
-      #     use-swissknife-sha: true
+      - swissknife/trigger-workflows-for-all-modified:
+          base-branch: master
+          run-mode-for-base-branch: run_for_last_commit
+          use-divergence-point: true
+          code-param-name-map: '
+            [
+              {"regex": "^(clients|shared).*", "param_name": "run_client_workflow"},
+              {"regex": "^(server|shared).*", "param_name": "run_server_workflow"},
+              {"regex": "^(operations).*", "param_name": "run_operations_workflow"}
+            ]'
+          additional-param-map: '{"run_trigger_workflow": false}'
+          use-swissknife-sha: true
 
 workflows:
   client-tests:
