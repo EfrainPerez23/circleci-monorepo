@@ -28,7 +28,7 @@ jobs:
             bash run_tests.sh
       - continuation/continue:
           parameters: '{}'
-          configuration_path: .circleci/continue_config.yml
+          configuration_path: configs/continue_config.yml
       # - path-filtering/filter:
       #     name: check-updated-files
       #     # 3-column, whitespace-delimited mapping. One mapping per
