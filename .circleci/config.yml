@@ -39,6 +39,7 @@ jobs:
       - continuation/continue:
           parameters: '{ "ec" : "testing_parameter_pass" }'
           configuration_path: configs/continue_config.yml
+      - run: echo 'marka'
       # - swissknife/trigger-workflows-for-all-modified:
       #     base-branch: master
       #     run-mode-for-base-branch: run_for_last_commit
